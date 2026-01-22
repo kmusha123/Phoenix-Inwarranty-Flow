@@ -1,57 +1,35 @@
 name: Postman Collection Workflow
-
 on:
   push:
-    branches: [main]
-  workflow_dispatch: 
+    branches:
+      - main
+  workflow_dispatch: null
   schedule:
-    - cron: 30 02 * * *  # 8 am IST Every day
-    - cron: 00 14 * * *  # 7 30 pm IST Every day
-    - cron: 00 06 * * 1-5 # 11 30 am IST Monday to Friday
-
-jobs: 
+    - cron: 30 02 * * *
+    - cron: 00 14 * * *
+    - cron: 00 06 * * 1-5
+jobs:
   run-postman-tests:
     runs-on: ubuntu-latest
-    
-  steps:    
-      - name: Checkout the code
-        uses: actions/checkout@v6.0.2
-
-      - name: Install Nodejs and npm
-        uses: actions/setup-node@v6.2.0
-        with:
-          node-version: 22
-
-      - name: Install Newman and Html-extra globally
-        run: |
-             npm install -g newman
-             npm install -g newman-reporter-htmlextra
-
-       - name: Run the Postman Collection with newman
-         run: |
-            newman run 'Inwarranty-flow Collection.postman_collection.json' \
-            -e QA.postman_environment.json \
-            -d testdata.csv \
-            -r cli,htmlextra
-
-       - name: Newman Report
-         uses: actions/upload-artifact@v6.0.0
-         with:
-           name: Newman Report
-           path: newman/*.html
-        
-        
-       
-
-    
-
-
-
-
-
-
-
-
-    
-    
-    
+  steps:
+    - name: Checkout the code
+      uses: actions/checkout@v6.0.2
+    - name: Install Nodejs and npm
+      uses: actions/setup-node@v6.2.0
+      with:
+        node-version: 22
+    - name: Install Newman and Html-extra globally
+      run: |
+        npm install -g newman
+        npm install -g newman-reporter-htmlextra
+    - name: Run the Postman Collection with newman
+      run: |
+        newman run 'Inwarranty-flow Collection.postman_collection.json' \
+        -e QA.postman_environment.json \
+        -d testdata.csv \
+        -r cli,htmlextra
+    - name: Newman Report
+      uses: actions/upload-artifact@v6.0.0
+      with:
+        name: Newman Report
+        path: newman/*.html
