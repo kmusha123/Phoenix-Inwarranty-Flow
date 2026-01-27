@@ -5,9 +5,9 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: 30 02 * * *
-    - cron: 00 14 * * *
-    - cron: 00 06 * * 1-5
+    - cron: '30 02 * * *' # Runs 8:00AM IST Everyday
+    - cron: '00 14 * * *' # Runs 7:30PM IST Everyday
+    - cron: '00 07 * * 1-5' # Runs 12:30PM IST Monday to Friday
 jobs:
   run-postman-tests:
     runs-on: ubuntu-latest
