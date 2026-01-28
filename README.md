@@ -33,7 +33,14 @@ The latest report is mailed to the team members using Gmail SMTP.
  The report will be created in the newman folder
  ![Postman Report](https://github.com/kmusha123/Phoenix-Inwarranty-Flow/blob/static-content/newman%20report.png)
 
- ## Project Structure ##
+ ## Project Structure ## 
+```
+Phoenix Inwarranty Flow
+├─ Inwarranty-flow Collection.postman_collection.json
+├─ QA.postman_environment.json
+└─ testdata.csv
+
+```
  
  ## How to run the Project? ##
  You can run the project on your local system for that:
